@@ -5,7 +5,7 @@
   <title>Convertisseur TEIA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
-  <link rel="stylesheet" href="{% static 'converter/css/style.css' %}"> 
+  <link rel="stylesheet" href="{% static 'converter/css/style.css' %}">
 </head>
 <body>
   <nav class="navbar">
@@ -17,7 +17,7 @@
         <li><a href="#video">🎥 Vidéo</a></li>
       </ul>
     </div>
-  </nav>  
+  </nav>
   <header>
     <h1>Convertisseur de QI / KFP - TEIA</h1>
     <p>Déposez votre fichier .docx pour générer un export automatiquement</p>
@@ -29,7 +29,7 @@
         📄 Télécharger le modèle .docx
       </a>
     </p>
-    
+
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
@@ -77,14 +77,14 @@
         }
       });
     });
-  
+
     document.querySelectorAll('.reveal').forEach((el) => {
       observer.observe(el);
     });
-  </script> 
+  </script>
   <footer style="text-align: center; padding: 20px; font-size: 0.9em; color: #777;">
-    <p>Réalisé par Dr Edouard Baudouin (Paul Brousse) — projet libre à usage pédagogique </br>
-    github: https://github.com/tiago972/app_teia</p>
+    <p>Réalisé par Edouard Baudouin — projet libre à usage pédagogique </br>
+    https://github.com/tiago972/app_teia</p>
    </footer>
 </body>
 </html>
