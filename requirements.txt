@@ -1,0 +1,8 @@
+asgiref==3.8.1
+Django==5.2
+lxml==5.3.2
+python-docx==1.1.2
+setuptools==75.8.0
+sqlparse==0.5.3
+typing_extensions==4.13.2
+wheel==0.45.1
