@@ -46,19 +46,31 @@
   <section class="tuto reveal" id="tuto">
     <h2>Comment ça marche ?</h2>
     <ol>
-      <li>L’appli ne prend pas en charge TCS ni les Zones à pointer </li>
-      <li>le chargement des images (les questions peuvent être préparées mais il faudra insérer les images après)</li>
-      <li>Préparez votre fichier Word avec la bonne structure (QI ou KFP bien identifiés). <a href="{% static 'converter/Template.docx' %}">
-        📄 Télécharger le modèle .docx
-      </a><strong>Veillez à bien respecter les indications du Template </strong></li>
-      <li>Renseigner les champs : discipline, session, titulaire, année.</li>
-      <li>Déposer le fichier .docx et cliquer sur "Générer le ZIP".</li>
-      <li>Un seul fichier ZIP sera proposé en téléchargement. Il contient les exports Moodle: un zip pour tous les QI et un zip par KFP. Les questions seront automatiquement nommées</li>
-      <li>Rendez-vous sur Teia et cliquez sur "Importer" puis:</li>
-      <ul><li>Décompresser le dossier compressé téléchargé</li>
-      <li>Glisser-déposer le fichier "gift_output.zip" et validé l'import </li>
-    <li>De même pour chaque fichier KFP mais <strong>il faut sélectionner "QTI" dans l'import</strong> et glisser le fichiers de chaque KFP</li></ul>
-    </ol>
+      <li>L’application ne prend pas en charge les TCS ni les zones à pointer.</li>
+      <li>Le chargement des images n’est pas automatisé : vous pouvez les préparer dans le fichier, mais elles devront être insérées manuellement dans Teia après import.</li>
+      <li>
+        Préparez votre fichier Word avec la structure attendue (QI ou KFP bien identifiés). 
+        <a href="{% static 'converter/Template.docx' %}">📄 Télécharger le modèle .docx</a> 
+        <strong>et veillez à bien respecter les indications du template</strong>.
+      </li>
+      <li>Renseignez les champs : discipline, session, titulaire, année.</li>
+      <li>Déposez le fichier .docx et cliquez sur « Générer le ZIP ».</li>
+      <li>Un seul fichier ZIP sera proposé en téléchargement. Il contient tous les exports Moodle :
+        <ul>
+          <li>Un fichier unique pour les QI (format GIFT)</li>
+          <li>Un fichier par KFP (format QTI, déjà structuré)</li>
+        </ul>
+        Les questions sont automatiquement renommées.
+      </li>
+      <li>
+        Sur Teia, cliquez sur « Importer », puis :
+        <ul>
+          <li>Décompressez le fichier ZIP téléchargé</li>
+          <li>Pour les QI : importez le fichier <code>gift_output.zip</code> (format GIFT)</li>
+          <li>Pour chaque fichier KFP : sélectionnez le format <strong>QTI</strong> puis glissez le fichier correspondant</li>
+        </ul>
+      </li>
+    </ol>    
     <h3 id="video" style="text-align: center; margin-top: 40px;">📹 Démonstration vidéo</h3>
       <div style="display: flex; justify-content: center;">
       <video width="600" controls>
