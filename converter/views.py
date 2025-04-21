@@ -33,7 +33,10 @@ def upload_file_view(request):
                 with zipfile.ZipFile(zip_path, 'w') as zipf:
                     for file_path in list_of_files:
                         zipf.write(file_path, arcname=os.path.basename(file_path))
-
+                temp_zip = tempfile.NamedTemporaryFile(delete=False, suffix='.zip', dir='/tmp')
+                with open(zip_path, 'rb') as f_in:
+                    with open(temp_zip.name, 'wb') as f_out:
+                        f_out.write(f_in.read())
                 # Renvoyer le ZIP à télécharger
                 fs.delete(filename)
                 return FileResponse(open(zip_path, 'rb'), as_attachment=True, filename='teia_inputs.zip')
