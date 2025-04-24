@@ -26,19 +26,27 @@ def parse_docx(path):
         while i < len(paragraphs) and paragraphs[i] not in ("[QI]", "[KFP]"):
           i += 1
         if paragraphs[i] == "[QI]":
-          i += 1
-          question_text = paragraphs[i]  
-          choices = []
-          i += 1
-          while i < len(paragraphs) and not paragraphs[i].startswith(("[QI]", "[KFP]")):
-            line_raw = paragraphs[i]
-            is_correct = line_raw.endswith("*")
-            line = re.sub(r"^\s*([A-Z]\.|[-•–])\s*", "", line_raw)
-            text = re.sub(r"\s*\*$", "", line).strip()
-            choices.append((text, is_correct))
             i += 1
-          nb_correct = sum(1 for _, c in choices if c)
-          qtype = "qroc" if nb_correct == 0 else "qcm"
+            question_text = paragraphs[i]  
+            choices = []
+            i += 1
+            while i < len(paragraphs) and not paragraphs[i].startswith(("[QI]", "[KFP]")):
+                line_raw = paragraphs[i]
+                is_correct = line_raw.endswith("*")
+                line = re.sub(r"^\s*([A-Z]\.|[-•–])\s*", "", line_raw)
+                text = re.sub(r"\s*\*$", "", line).strip()
+                choices.append((text, is_correct))
+                i += 1
+            nb_correct = sum(1 for _, c in choices if c)
+            if nb_correct == 0:
+                qtype = "qroc"
+            elif nb_correct == 1:
+                qtype = "qru"
+            elif "#QRP" in question_text:
+    question_text = question_text.replace("#QRP", "").strip()
+    qtype = "qrp"
+else:
+    qtype = "qrm"
           qi_list.append({"type": qtype, "question": question_text, "choices": choices})
 
         elif paragraphs[i] == "[KFP]":
@@ -69,8 +77,6 @@ def parse_docx(path):
                   questions.append({"question": q_text, "choices": subchoices, "type": subtype})
               else:
                   i += 1
-            # print(f'-- {vignette}-- ')
-            # print(f'{questions}')
             kfp_list.append({"vignette": vignette, "questions": questions})
         else:
             i += 1
