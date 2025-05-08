@@ -43,10 +43,10 @@ def parse_docx(path):
             elif nb_correct == 1:
                 qtype = "qru"
             elif "#QRP" in question_text:
-    question_text = question_text.replace("#QRP", "").strip()
-    qtype = "qrp"
-else:
-    qtype = "qrm"
+                question_text = question_text.replace("#QRP", "").strip()
+                qtype = "qrp"
+            else:
+                qtype = "qrm"
           qi_list.append({"type": qtype, "question": question_text, "choices": choices})
 
         elif paragraphs[i] == "[KFP]":
