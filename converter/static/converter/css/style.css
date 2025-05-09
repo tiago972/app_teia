@@ -1,0 +1,172 @@
+/* converter/static/converter/css/style.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #005F73;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input[type="file"],
+input[type="text"],
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 12px;
+  background-color: #0A9396;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #007B7F;
+}
+
+section.tuto {
+  padding: 60px 20px;
+  background: #f1f1f1;
+}
+
+section.tuto h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+section.tuto ol {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: none;
+}
+
+.button-download {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #E9D8A6;
+  color: #333;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button-download:hover {
+  background-color: #D4B96D;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.navbar {
+  background-color: #005F73;
+  color: white;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.navbar-logo {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  list-style: none;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #E9D8A6;
+}
+
+header {
+  background: #005F73;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.1em;
+  margin: 0;
+}
+
+header strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
