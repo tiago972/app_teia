@@ -11,6 +11,7 @@ from xml.dom.minidom import parseString
 
 # Paramètres globaux par défaut
 invisible = ['\u00A0', '\u200B', '\u200C', '\u200D', '\u2060', '\uFEFF']
+paragraph_headers = ("[QI]", "[KFP]", "[DP]")
 clean = lambda text: ''.join(c for c in text if c not in invisible)
 
 def parse_docx(path):
@@ -19,14 +20,14 @@ def parse_docx(path):
     qi_list, kfp_list = [], []
     i = 0
     while i < len(paragraphs):
-        while i < len(paragraphs) and paragraphs[i] not in ("[QI]", "[KFP]"):
+        while i < len(paragraphs) and paragraphs[i] not in paragraph_headers:
           i += 1
-        if paragraphs[i] == "[QI]":
+        if i < len(paragraphs) and paragraphs[i] == "[QI]":
             i += 1
             question_text = paragraphs[i]  
             choices = []
             i += 1
-            while i < len(paragraphs) and not paragraphs[i].startswith(("[QI]", "[KFP]")):
+            while i < len(paragraphs) and not paragraphs[i].startswith(paragraph_headers):
                 line_raw = paragraphs[i]
                 is_correct = line_raw.endswith("*")
                 line = re.sub(r"^\s*([A-Z]\.|[-•–])\s*", "", line_raw)
@@ -38,27 +39,24 @@ def parse_docx(path):
                 qtype = "qroc"
             elif nb_correct == 1:
                 qtype = "qru"
-            elif "#QRP" in question_text:
-                question_text = question_text.replace("#QRP", "").strip()
-                qtype = "qrp"
             else:
                 qtype = "qrm"
             qi_list.append({"type": qtype, "question": question_text, "choices": choices})
 
-        elif paragraphs[i] == "[KFP]":
+        elif i < len(paragraphs) and paragraphs[i] == "[DP]":
             i += 1
             while i < len(paragraphs) and not paragraphs[i].strip():
               i += 1
             vignette = paragraphs[i]
             i += 1
             questions = []
-            while i < len(paragraphs) and not paragraphs[i].startswith("["):
+            while i < len(paragraphs) and not paragraphs[i].startswith(paragraph_headers):
               if clean(paragraphs[i]).lower().startswith("q:"):
                   q_text = clean(paragraphs[i])
                   q_text = q_text[2:].strip()
                   i += 1
                   subchoices = []
-                  while i < len(paragraphs) and not paragraphs[i].startswith(("[QI]", "[QROC]", "[KFP]")) and not clean(paragraphs[i]).lower().startswith("q:"):
+                  while i < len(paragraphs) and not paragraphs[i].startswith(paragraph_headers) and not clean(paragraphs[i]).lower().startswith("q:"):
                       line_raw = paragraphs[i]
                       if not line_raw.strip():
                           i += 1
